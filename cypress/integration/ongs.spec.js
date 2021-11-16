@@ -19,7 +19,6 @@ describe ('Ongs', () => {
 
         cy.route('POST', '**/ongs').as('postOng');
         cy.get('[data-cy=submit]').click();
-
         cy.wait('@postOng').then((xhr) => {
             expect(xhr.status).be.eq(200);
             expect(xhr.response.body).has.property('id');
@@ -31,6 +30,8 @@ describe ('Ongs', () => {
         cy.visit('http://localhost:3000');
         cy.get('input').type(Cypress.env('createdOngId'));
         cy.get('.button').click();
-    }); 
-    
+        cy.get('span').contains('Bem vinda, '+Cypress.env('name')).should((elem) => {
+            expect(elem.text()).to.equal('Bem vinda, '+Cypress.env('name'));
+        });                
+    });     
 });

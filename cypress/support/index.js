@@ -1,26 +1,13 @@
-// ***********************************************************
-// This example support/index.js is processed and
-// loaded automatically before your test files.
-//
-// This is a great place to put global configuration and
-// behavior that modifies Cypress.
-//
-// You can change the location of this file or turn off
-// automatically serving support files with the
-// 'supportFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/configuration
-// ***********************************************************
-
-// Import commands.js using ES2015 syntax:
 import './commands'
-
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
 
 before(() => {
     // cy.server() - para route e request
     cy.server();
-    cy.createOng();
+    //variaveis env
+    var name =Cypress.env('name', 'Gatos queridos');
+    var email = Cypress.env('email', 'teste@email.com');
+    var whatsapp = Cypress.env('whatsapp', '1999999999');
+    var city = Cypress.env('city', 'Campinas');
+    var uf = Cypress.env('uf', 'SP'); 
+    cy.createOng(name, email, whatsapp, city, uf);
 });
